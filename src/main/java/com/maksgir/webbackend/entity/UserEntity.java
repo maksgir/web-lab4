@@ -9,12 +9,11 @@ import lombok.Setter;
 @Entity
 @Table(name = "users", uniqueConstraints = {
         @UniqueConstraint(columnNames = "username"),
-        @UniqueConstraint(columnNames = "email"),
 })
 @NoArgsConstructor
 @Getter
 @Setter
-public class User {
+public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -22,15 +21,12 @@ public class User {
     @Column(name = "username")
     private String username;
 
-    @Column(name = "email")
-    private String email;
 
     @Column(name = "password")
     private String password;
 
-    public User(String username, String email, String password) {
+    public UserEntity(String username, String password) {
         this.username = username;
-        this.email = email;
         this.password = password;
     }
 }
