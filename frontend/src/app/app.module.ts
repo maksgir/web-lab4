@@ -8,6 +8,7 @@ import {RegistrationComponent} from './registration/registration.component';
 import {HomePageComponent} from './home-page/home-page.component';
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
+import {httpInterceptorProviders} from "./auth/token-injector";
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import {HttpClientModule} from "@angular/common/http";
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule {

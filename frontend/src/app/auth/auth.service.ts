@@ -15,14 +15,14 @@ const httpOptions = {
 })
 export class AuthService {
 
-  private loginUrl = 'http://localhost:8080/api/auth/signin';
-  private signupUrl = 'http://localhost:8080/api/auth/signup';
+  private loginUrl = 'http://localhost:8080/api/auth/login';
+  private signupUrl = 'http://localhost:8080/api/auth/register';
 
-  attemptAuth(credentials: AuthLoginInfo): Observable<JwtResponse> {
-    return this.http.post<JwtResponse>(this.loginUrl, credentials, httpOptions);
+  attemptAuth(credentials: LoginInfo): Observable<Token> {
+    return this.http.post<Token>(this.loginUrl, credentials, httpOptions);
   }
 
-  signUp(info: SignUpInfo): Observable<string> {
+  signUp(info: RegisterInfo): Observable<string> {
     return this.http.post<string>(this.signupUrl, info, httpOptions);
   }
 
