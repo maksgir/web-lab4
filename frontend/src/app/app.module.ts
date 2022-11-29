@@ -27,7 +27,7 @@ import { UserComponent } from './user/user.component';
       {path: 'home', component: HomePageComponent},
       {path: '', redirectTo: 'home', pathMatch: 'full'},
       {path: 'register', component: RegistrationComponent},
-      {path: 'auth/login', component: LoginComponent},
+      {path: 'login', component: LoginComponent},
       {path: 'user', component: UserComponent},
     ]),
   ],
