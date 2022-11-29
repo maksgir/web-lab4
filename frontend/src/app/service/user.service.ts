@@ -11,7 +11,7 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  getHelloBoard(): Observable<string> {
+  getUserBoard(): Observable<string> {
     return this.http.get(this.userUrl, { responseType: 'text' });
   }
 

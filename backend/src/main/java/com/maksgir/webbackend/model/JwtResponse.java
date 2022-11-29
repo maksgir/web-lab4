@@ -6,9 +6,11 @@ import java.io.Serializable;
 
 @Getter
 public class JwtResponse implements Serializable {
-    private final String jwttoken;
+    private final String token;
+    private String username;
 
-    public JwtResponse(String jwttoken) {
-        this.jwttoken = jwttoken;
+    public JwtResponse(String token, String username) {
+        this.token = token;
+        this.username = username;
     }
 }
