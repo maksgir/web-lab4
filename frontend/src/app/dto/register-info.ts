@@ -1,11 +1,9 @@
 export class RegisterInfo {
-  name: string;
   username:string;
   password:string;
 
 
-  constructor(name: string, username: string, password: string) {
-    this.name = name;
+  constructor(username: string, password: string) {
     this.username = username;
     this.password = password;
   }

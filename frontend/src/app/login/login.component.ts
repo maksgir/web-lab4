@@ -11,7 +11,6 @@ import { LoginInfo } from '../dto/login-info';
 })
 export class LoginComponent implements OnInit {
 
-  name: string = '';
   form: any = {};
   isLoggedIn = false;
   isLoginFailed = false;
@@ -30,17 +29,17 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.loginInfo = new LoginInfo(
       this.form.username,
-      this.form.password);
+      this.form.password
+    );
 
     this.authService.attemptAuth(this.loginInfo).subscribe(
       data => {
         this.tokenStorage.saveToken(data.token);
         console.log(this.tokenStorage.getToken());
         this.tokenStorage.saveUsername(data.username);
-        this.name = data.username;
         this.isLoginFailed = false;
         this.isLoggedIn = true;
-        // this.reloadPage();
+        this.reloadPage();
       },
       error => {
         console.log(error);

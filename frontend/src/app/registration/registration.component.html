@@ -1,1 +1,47 @@
-<p>registration works!</p>
+<div *ngIf="isLoggedIn" class="alert-success">
+  <p>You are logged in as <b>{{tokenStorage.getUsername()}}</b></p>
+</div>
+
+<div *ngIf="!isLoggedIn" class="row col-sm-6" style="max-width:350px;">
+  <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input type="text" class="form-control" name="username" [(ngModel)]="form.username" #username="ngModel"
+             required/>
+      <div *ngIf="f.submitted && username.invalid" class="alert-danger">
+        <div *ngIf="username.errors?.['required']">Username is required</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password1">Password</label>
+      <input type="password" class="form-control" name="password1" [(ngModel)]="form.password1" #password1="ngModel"
+             required minlength="6"/>
+      <div *ngIf="f.submitted && password1.invalid" class="alert-danger">
+        <div *ngIf="password1.errors?.['required']">Password is required</div>
+        <div *ngIf="password1.errors?.['minlength']">Password must be at least 6 characters</div>
+      </div>
+    </div>
+
+    <div class="form-group" *ngIf="password1.valid">
+      <label for="password2">Repeat password</label>
+      <input  type="password" class="form-control" name="password2" [(ngModel)]="form.password2" #password2="ngModel"
+             required minlength="6"/>
+      <div class="alert-danger">
+        <div *ngIf="password1.value!=password2.value">Password must be equals</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <button class="btn btn-primary" disabled [disabled]="!username.valid || !password1.valid">Sign up</button>
+      <div *ngIf="f.submitted && isRegistrationFailed" class="alert alert-danger">
+        Registration failed: {{errorMessage}}
+      </div>
+    </div>
+
+  </form>
+  <hr/>
+  <p>I already have an account</p>
+  <a [routerLink]="['/login']" class="btn btn-success">Login</a>
+</div>
