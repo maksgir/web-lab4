@@ -30,7 +30,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException, UsernameNotFoundException {
 
         final String requestTokenHeader = request.getHeader("Authorization");
-
+        System.out.println(requestTokenHeader);
 
         String username = null;
         String jwtToken = null;
@@ -71,6 +71,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                 SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
             }
         }
+
         chain.doFilter(request, response);
     }
 }
