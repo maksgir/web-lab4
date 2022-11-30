@@ -3,6 +3,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {RouterModule} from '@angular/router';
 import {MatButtonModule} from '@angular/material/button';
 import {MatMenuModule} from '@angular/material/menu';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 import {AppComponent} from './app.component';
 import {LoginComponent} from './login/login.component';
@@ -23,7 +24,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     RegistrationComponent,
     HomePageComponent,
     UserComponent,
-    NavbarComponent
+    NavbarComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -38,7 +40,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     ]),
     BrowserAnimationsModule,
     MatButtonModule,
-    MatMenuModule
+    MatMenuModule,
+    MatSlideToggleModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
