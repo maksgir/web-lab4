@@ -48,7 +48,7 @@ public class AuthenticationController {
     @PostMapping(value = "/register")
     public ResponseEntity<?> saveUser(@RequestBody UserDTO user) throws Exception {
         if (service.existsByUsername(user.getUsername())) {
-            throw new UsernameNotFoundException("User with username: " + user.getUsername() + " already exists");
+            throw new AlreadyExistUserException("User with username: " + user.getUsername() + " already exists");
         }
         return ResponseEntity.ok(service.save(user));
     }

@@ -44,13 +44,13 @@ export class RegistrationComponent implements OnInit {
         this.authService.attemptAuth(loginInfo).subscribe(
           data => {
             this.tokenStorage.saveToken(data.token);
-            console.log(this.tokenStorage.getToken());
             this.tokenStorage.saveUsername(data.username);
             this.isLoggedIn = true;
           },
           error => {
             console.log(error);
-            this.errorMessage = error.error;
+            console.log(error.message);
+            this.errorMessage = error.message;
           }
         );
       },
