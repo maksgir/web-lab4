@@ -3,6 +3,7 @@ package com.maksgir.webbackend.controller;
 
 import com.maksgir.webbackend.config.JwtTokenUtil;
 import com.maksgir.webbackend.dto.UserDTO;
+import com.maksgir.webbackend.exception.AlreadyExistUserException;
 import com.maksgir.webbackend.model.JwtRequest;
 import com.maksgir.webbackend.model.JwtResponse;
 import com.maksgir.webbackend.service.UserDetailsServiceImpl;
@@ -29,14 +30,14 @@ public class AuthenticationController {
     private JwtTokenUtil jwtTokenUtil;
 
     @Autowired
-    private UserDetailsServiceImpl userDetailsService;
+    private UserDetailsServiceImpl service;
 
     @PostMapping(value = "/login")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
 
         authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
 
-        final UserDetails userDetails = userDetailsService
+        final UserDetails userDetails = service
                 .loadUserByUsername(authenticationRequest.getUsername());
 
         final String token = jwtTokenUtil.generateToken(userDetails);
@@ -46,8 +47,10 @@ public class AuthenticationController {
 
     @PostMapping(value = "/register")
     public ResponseEntity<?> saveUser(@RequestBody UserDTO user) throws Exception {
-
-        return ResponseEntity.ok(userDetailsService.save(user));
+        if (service.existsByUsername(user.getUsername())) {
+            throw new UsernameNotFoundException("User with username: " + user.getUsername() + " already exists");
+        }
+        return ResponseEntity.ok(service.save(user));
     }
 
     private void authenticate(String username, String password) throws Exception {
@@ -68,6 +71,11 @@ public class AuthenticationController {
     @ExceptionHandler
     public ResponseEntity<String> handleException(DisabledException e) {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.UNAUTHORIZED);
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<String> handleException(AlreadyExistUserException e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
 

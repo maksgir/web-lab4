@@ -33,6 +33,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 new ArrayList<>());
     }
 
+    public boolean existsByUsername(String name){
+        return repository.existsByUsername(name);
+    }
+
     public UserEntity save(UserDTO userDTO) {
         UserEntity newUser = new UserEntity();
         newUser.setUsername(userDTO.getUsername());
