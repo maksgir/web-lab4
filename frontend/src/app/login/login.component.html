@@ -1,5 +1,7 @@
-
-  <div class="row col-sm-6" style="max-width:350px;">
+<div *ngIf="isLoggedIn">
+  <p>You are logged in as <b>{{tokenStorage.getUsername()}}</b></p>
+</div>
+  <div *ngIf="!isLoggedIn" class="row col-sm-6" style="max-width:350px;">
     <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
       <div class="form-group">
         <label for="username">Username</label>

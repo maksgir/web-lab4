@@ -11,7 +11,7 @@ import { LoginInfo } from '../dto/login-info';
 })
 export class LoginComponent implements OnInit {
 
-
+  name: string = '';
   form: any = {};
   isLoggedIn = false;
   isLoginFailed = false;
@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   private loginInfo: LoginInfo | undefined;
 
   constructor(private authService: AuthService,
-              private tokenStorage: TokenStorageService) { }
+              public tokenStorage: TokenStorageService) { }
 
   ngOnInit() {
     if (this.tokenStorage.getToken()) {
@@ -35,15 +35,16 @@ export class LoginComponent implements OnInit {
     this.authService.attemptAuth(this.loginInfo).subscribe(
       data => {
         this.tokenStorage.saveToken(data.token);
+        console.log(this.tokenStorage.getToken());
         this.tokenStorage.saveUsername(data.username);
-
+        this.name = data.username;
         this.isLoginFailed = false;
         this.isLoggedIn = true;
-        this.reloadPage();
+        // this.reloadPage();
       },
       error => {
         console.log(error);
-        this.errorMessage = error.message;
+        this.errorMessage = error.error;
         this.isLoginFailed = true;
       }
     );

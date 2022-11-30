@@ -15,9 +15,11 @@ export class UserComponent implements OnInit {
   ngOnInit() {
     this.userService.getUserBoard().subscribe(
       data => {
+        console.log("belooooo");
         this.board = data;
       },
       error => {
+        console.log("baddddd");
         this.errorMessage = `${error.status}: ${JSON.parse(error.error).message}`;
       }
     );
