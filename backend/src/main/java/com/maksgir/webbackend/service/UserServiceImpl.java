@@ -5,18 +5,20 @@ import com.maksgir.webbackend.config.Encoder;
 import com.maksgir.webbackend.dto.UserDTO;
 import com.maksgir.webbackend.entity.UserEntity;
 import com.maksgir.webbackend.repository.UserRepository;
-import com.maksgir.webbackend.repository.UserRepositoryJpa;
+import com.maksgir.webbackend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
-public class UserDetailsServiceImpl implements UserDetailsService {
+@Service
+@Transactional
+public class UserServiceImpl implements UserDetailsService, UserService {
 
     @Autowired
     protected UserRepository repository;
@@ -34,17 +36,30 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 new ArrayList<>());
     }
 
-    public boolean existsByUsername(String name){
+    @Override
+    public boolean existsByUsername(String name) {
         return repository.existsByUsername(name);
     }
 
-    public UserEntity save(UserDTO userDTO) {
+    @Override
+    public UserEntity findUserBuUsername(String username) throws UsernameNotFoundException {
+        return repository.findByUsername(username).
+                orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + username));
+    }
+
+    @Override
+    public UserEntity saveUser(UserDTO userDTO) {
         UserEntity newUser = new UserEntity();
         newUser.setUsername(userDTO.getUsername());
         newUser.setPassword(bcryptEncoder.encode(userDTO.getPassword()));
-        int i1 = Integer.MAX_VALUE;
-        int i2 = Integer.MAX_VALUE;
-        System.out.println(i1 + i2);
         return repository.save(newUser);
+    }
+
+
+    @Override
+    public void clearPoints(String username) {
+        UserEntity user = repository.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("No such user with username: " + username));
+        repository.clearPoints(user.getId());
     }
 }

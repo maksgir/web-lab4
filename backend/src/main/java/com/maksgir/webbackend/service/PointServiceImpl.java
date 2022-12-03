@@ -6,24 +6,28 @@ import com.maksgir.webbackend.entity.UserEntity;
 import com.maksgir.webbackend.repository.PointRepository;
 import com.maksgir.webbackend.util.AreaHitChecker;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 
-
-public class PointServiceImpl {
+@Service
+@Transactional
+public class PointServiceImpl implements PointService {
 
     @Autowired
     private PointRepository repository;
 
+    @Autowired
     private AreaHitChecker hitChecker;
 
 
     public void save(PointDTO pointDTO) {
 
-//        boolean hit = hitChecker.checkHit(pointDTO.getX(), pointDTO.getY(), pointDTO.getR());
-//
+
 //        UserEntity userEntity = pointBean.getUserBean().getUserEntity();
 //        LocalDateTime ldt = LocalDateTime.ofInstant(Instant.now(), ZoneOffset.UTC);
 //
@@ -49,5 +53,13 @@ public class PointServiceImpl {
 //        dao.save(pointEntity);
 //
 //        pointBean.getUserBean().getPointDTOList().add(pointDTO);
+    }
+
+    @Override
+    public void savePoint(PointDTO pointDTO, UserEntity userEntity) {
+        boolean hit = hitChecker.checkHit(pointDTO.getX(), pointDTO.getY(), pointDTO.getR());
+
+
+
     }
 }

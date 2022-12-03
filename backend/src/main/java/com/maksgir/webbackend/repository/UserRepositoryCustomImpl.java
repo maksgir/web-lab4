@@ -5,8 +5,9 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
-@Component
+@Repository
 public class UserRepositoryCustomImpl implements UserRepositoryCustom {
     @PersistenceContext
     private EntityManager em;

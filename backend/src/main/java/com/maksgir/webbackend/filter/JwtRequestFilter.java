@@ -1,8 +1,7 @@
 package com.maksgir.webbackend.filter;
 
 import com.maksgir.webbackend.config.JwtTokenUtil;
-import com.maksgir.webbackend.service.UserDetailsServiceImpl;
-import com.maksgir.webbackend.service.UserService;
+import com.maksgir.webbackend.service.UserServiceImpl;
 import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -22,7 +21,7 @@ import java.io.IOException;
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
     @Autowired
-    private UserService userService;
+    private UserServiceImpl userService;
 
     @Autowired
     private JwtTokenUtil jwtTokenUtil;

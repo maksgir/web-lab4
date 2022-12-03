@@ -2,8 +2,9 @@ package com.maksgir.webbackend.controller;
 
 
 import com.maksgir.webbackend.dto.PointDTO;
+import com.maksgir.webbackend.entity.UserEntity;
+import com.maksgir.webbackend.service.UserServiceImpl;
 import com.maksgir.webbackend.service.PointService;
-import com.maksgir.webbackend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 public class AppController {
 
     @Autowired
-    private UserService userService;
+    private UserServiceImpl userService;
 
     @Autowired
     private PointService pointService;
@@ -26,14 +27,15 @@ public class AppController {
         return "Hey body";
     }
 
-    @GetMapping("clear")
+    @GetMapping("/clear")
     public void clearPoints(@AuthenticationPrincipal UserDetails details){
-        userService.clearPoint(details.getUsername());
+        userService.clearPoints(details.getUsername());
     }
 
-    @PostMapping
+    @PostMapping()
     public void savePoint(@RequestBody PointDTO pointDTO, @AuthenticationPrincipal UserDetails details){
-
+        UserEntity user = userService.findUserBuUsername(details.getUsername());
+        pointService.savePoint(pointDTO, user);
     }
 
 
