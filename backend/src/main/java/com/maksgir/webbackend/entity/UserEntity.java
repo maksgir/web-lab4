@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Table(name = "users", uniqueConstraints = {
         @UniqueConstraint(columnNames = "username"),
@@ -24,6 +26,9 @@ public class UserEntity {
 
     @Column(name = "password")
     private String password;
+
+    @OneToMany(mappedBy = "owner")
+    private List<PointEntity> points;
 
     public UserEntity(String username, String password) {
         this.username = username;

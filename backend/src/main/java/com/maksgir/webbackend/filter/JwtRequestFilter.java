@@ -2,6 +2,7 @@ package com.maksgir.webbackend.filter;
 
 import com.maksgir.webbackend.config.JwtTokenUtil;
 import com.maksgir.webbackend.service.UserDetailsServiceImpl;
+import com.maksgir.webbackend.service.UserService;
 import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -21,7 +22,7 @@ import java.io.IOException;
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
     @Autowired
-    private UserDetailsServiceImpl userDetailsService;
+    private UserService userService;
 
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
@@ -30,7 +31,6 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException, UsernameNotFoundException {
 
         final String requestTokenHeader = request.getHeader("Authorization");
-        System.out.println(requestTokenHeader);
 
         String username = null;
         String jwtToken = null;
@@ -53,7 +53,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
             UserDetails userDetails = null;
             try {
-                userDetails = this.userDetailsService.loadUserByUsername(username);
+                userDetails = this.userService.loadUserByUsername(username);
             } catch (UsernameNotFoundException e) {
                 logger.warn(e.getMessage());
             }

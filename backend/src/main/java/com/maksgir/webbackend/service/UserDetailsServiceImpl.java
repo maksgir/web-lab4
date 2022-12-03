@@ -5,6 +5,7 @@ import com.maksgir.webbackend.config.Encoder;
 import com.maksgir.webbackend.dto.UserDTO;
 import com.maksgir.webbackend.entity.UserEntity;
 import com.maksgir.webbackend.repository.UserRepository;
+import com.maksgir.webbackend.repository.UserRepositoryJpa;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,13 +13,13 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
-@Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
-    private UserRepository repository;
+    protected UserRepository repository;
 
     @Autowired
     private Encoder bcryptEncoder;
@@ -41,7 +42,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         UserEntity newUser = new UserEntity();
         newUser.setUsername(userDTO.getUsername());
         newUser.setPassword(bcryptEncoder.encode(userDTO.getPassword()));
-
+        int i1 = Integer.MAX_VALUE;
+        int i2 = Integer.MAX_VALUE;
+        System.out.println(i1 + i2);
         return repository.save(newUser);
     }
 }
