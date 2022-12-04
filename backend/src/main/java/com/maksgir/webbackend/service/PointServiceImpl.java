@@ -22,44 +22,27 @@ public class PointServiceImpl implements PointService {
     private PointRepository repository;
 
     @Autowired
+    private UserServiceImpl userService;
+
+    @Autowired
     private AreaHitChecker hitChecker;
 
 
-    public void save(PointDTO pointDTO) {
-
-
-//        UserEntity userEntity = pointBean.getUserBean().getUserEntity();
-//        LocalDateTime ldt = LocalDateTime.ofInstant(Instant.now(), ZoneOffset.UTC);
-//
-//        PointEntity pointEntity =  (pointBean.getType().equals("Павук"))? new SpiderPoint():new AntPoint();
-//        pointEntity.setX(pointBean.getX());
-//        pointEntity.setY(pointBean.getY());
-//        pointEntity.setR(pointEntity.getR());
-//        pointEntity.setDt(ldt);
-//        pointEntity.setExe_time(exeTime);
-//        pointEntity.setHit(hit);
-//        pointEntity.setOwner(userEntity);
-//
-//        if (pointEntity instanceof SpiderPoint){
-//            ((SpiderPoint) pointEntity).setLegNum(dataGenerator.getLegs());
-//        } else {
-//            ((AntPoint) pointEntity).setBodyColor(dataGenerator.getColor());
-//        }
-//
-//
-//        PointDTO pointDTO = new PointDTO(pointBean.getX(), pointBean.getY(),
-//                pointBean.getR(), ldt, exeTime, hit, pointBean.getType());
-//
-//        dao.save(pointEntity);
-//
-//        pointBean.getUserBean().getPointDTOList().add(pointDTO);
-    }
-
     @Override
-    public void savePoint(PointDTO pointDTO, UserEntity userEntity) {
+    public void savePoint(PointDTO pointDTO, String username) {
         boolean hit = hitChecker.checkHit(pointDTO.getX(), pointDTO.getY(), pointDTO.getR());
 
+        UserEntity user = userService.findUserBuUsername(username);
 
+        PointEntity pointEntity = new PointEntity(
+                pointDTO.getX(),
+                pointDTO.getY(),
+                pointDTO.getR(),
+                LocalDateTime.now(),
+                hit,
+                user);
+
+        repository.save(pointEntity);
 
     }
 }

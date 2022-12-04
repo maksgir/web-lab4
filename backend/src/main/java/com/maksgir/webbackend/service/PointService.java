@@ -6,5 +6,5 @@ import org.springframework.stereotype.Service;
 
 
 public interface PointService {
-    void savePoint(PointDTO pointDTO, UserEntity user);
+    void savePoint(PointDTO pointDTO, String username);
 }

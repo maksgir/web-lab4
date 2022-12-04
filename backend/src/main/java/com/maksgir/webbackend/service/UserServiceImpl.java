@@ -52,6 +52,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         UserEntity newUser = new UserEntity();
         newUser.setUsername(userDTO.getUsername());
         newUser.setPassword(bcryptEncoder.encode(userDTO.getPassword()));
+        newUser.setPoints(new ArrayList<>());
         return repository.save(newUser);
     }
 
@@ -60,6 +61,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     public void clearPoints(String username) {
         UserEntity user = repository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("No such user with username: " + username));
+        System.out.println("Clearing points of user:" + username);
         repository.clearPoints(user.getId());
     }
 }
