@@ -1,7 +1,7 @@
 package com.maksgir.webbackend.controller;
 
 
-import com.maksgir.webbackend.config.JwtTokenUtil;
+import com.maksgir.webbackend.util.JwtTokenUtil;
 import com.maksgir.webbackend.dto.UserDTO;
 import com.maksgir.webbackend.exception.AlreadyExistUserException;
 import com.maksgir.webbackend.model.JwtRequest;

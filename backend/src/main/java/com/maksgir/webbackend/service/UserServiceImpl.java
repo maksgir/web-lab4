@@ -5,7 +5,6 @@ import com.maksgir.webbackend.config.Encoder;
 import com.maksgir.webbackend.dto.UserDTO;
 import com.maksgir.webbackend.entity.UserEntity;
 import com.maksgir.webbackend.repository.UserRepository;
-import com.maksgir.webbackend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
