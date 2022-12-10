@@ -10,10 +10,8 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -34,7 +32,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
         String username = null;
         String jwtToken = null;
-        System.out.println(requestTokenHeader);
+
         // JWT Token is in the form "Bearer token". Remove Bearer word and get only the Token
 
         if (requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) {
@@ -49,15 +47,15 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         } else {
             logger.warn("JWT Token does not begin with Bearer String");
         }
-        System.out.println(username);
+
 
         // Once we get the token validate it.
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 
             BearerAuthToken authToken = new BearerAuthToken(new SimpleUser(username));
-            System.out.println("1");
+
             if (jwtTokenUtil.validateToken(jwtToken)) {
-                System.out.println("2");
+
                 SecurityContextHolder.getContext().setAuthentication(authToken);
             }
         }
