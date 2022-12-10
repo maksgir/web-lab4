@@ -41,11 +41,13 @@ export class RegistrationComponent implements OnInit {
           this.form.username,
           this.form.password2
         );
+
         this.authService.attemptAuth(loginInfo).subscribe(
           data => {
             this.tokenStorage.saveToken(data.token);
             this.tokenStorage.saveUsername(data.username);
             this.isLoggedIn = true;
+            this.reloadPage();
           },
           error => {
             console.log(error);
@@ -62,6 +64,8 @@ export class RegistrationComponent implements OnInit {
     );
   }
 
-
+  reloadPage() {
+    window.location.reload();
+  }
 
 }
