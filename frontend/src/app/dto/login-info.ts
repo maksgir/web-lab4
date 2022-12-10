@@ -1,5 +1,3 @@
-import {ɵElement, ɵValue} from "@angular/forms";
-
 export class LoginInfo {
   username: string;
   password: string;

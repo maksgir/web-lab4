@@ -7,18 +7,19 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {MatTableModule} from '@angular/material/table';
 
 import {AppComponent} from './app.component';
-import {LoginComponent} from './login/login.component';
-import {RegistrationComponent} from './registration/registration.component';
-import {HomePageComponent} from './home-page/home-page.component';
+import {LoginComponent} from './component/login/login.component';
+import {RegistrationComponent} from './component/registration/registration.component';
+import {HomePageComponent} from './component/home-page/home-page.component';
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {httpInterceptorProviders} from "./auth/token-injector";
-import { MainComponent } from './main/main.component';
+import { MainComponent } from './component/main/main.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NavbarComponent } from './navbar/navbar.component';
-import { PointTableComponent } from './point-table/point-table.component';
+import { NavbarComponent } from './component/navbar/navbar.component';
+import { PointTableComponent } from './component/point-table/point-table.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { PointFormComponent } from './component/point-form/point-form.component';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { MatSortModule } from '@angular/material/sort';
     MainComponent,
     NavbarComponent,
     PointTableComponent,
+    PointFormComponent,
 
   ],
   imports: [
