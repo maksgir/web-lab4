@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../service/user.service";
+import {TokenStorageService} from "../../auth/token-storage.service";
 
 @Component({
   selector: 'app-user',
@@ -9,19 +10,15 @@ import {UserService} from "../../service/user.service";
 export class MainComponent implements OnInit {
   board: string | undefined;
   errorMessage: string | undefined;
+  info: any;
 
-  constructor(private userService: UserService)  { }
+  constructor(private userService: UserService,
+              private token: TokenStorageService)  { }
 
   ngOnInit() {
-    this.userService.getUserBoard().subscribe(
-      data => {
-        console.log("belooooo");
-        this.board = data;
-      },
-      error => {
-        console.log("baddddd");
-        this.errorMessage = `${error.status}: ${JSON.parse(error.error).message}`;
-      }
-    );
+    this.info = {
+      token: this.token.getToken(),
+      username: this.token.getUsername()
+    };
   }
 }

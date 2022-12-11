@@ -1,16 +1,17 @@
-<div class="mat-elevation-z8">
+<div class="row col-sm-6">
   <form [formGroup]="pointForm" (ngSubmit)="onSubmit()" class="form">
 
-    <label for="x_value">
-      <select id="x_value"  formControlName="x_value">
-        <option value="">Choose X value</option>
-        <option *ngFor="let x of x_values" [ngValue]="x">
-          {{ x }}
-        </option>
-      </select>
-    </label>
+    <div class="form-group">
+      <label for="x_value">
+        <select id="x_value"  formControlName="x_value">
+          <option value="">Choose X value</option>
+          <option *ngFor="let x of x_values" [ngValue]="x">
+            {{ x }}
+          </option>
+        </select>
+      </label>
+    </div>
     <br>
-
 
     <button class="button" type="submit">Purchase</button>
   </form>

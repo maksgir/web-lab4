@@ -43,7 +43,7 @@ import { PointFormComponent } from './component/point-form/point-form.component'
       {path: '', redirectTo: 'home', pathMatch: 'full'},
       {path: 'register', component: RegistrationComponent},
       {path: 'login', component: LoginComponent},
-      {path: 'user', component: MainComponent},
+      {path: 'main', component: MainComponent},
     ]),
     BrowserAnimationsModule,
     MatButtonModule,

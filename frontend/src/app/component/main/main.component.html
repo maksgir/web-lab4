@@ -1,7 +1,9 @@
-<h2 class="text-center">Main Page</h2>
-<div class="container">
-  <div class="container">
-    <app-point-table></app-point-table>
-    <app-point-form></app-point-form>
-  </div>
+<div *ngIf="info.token; else loggedOut">
+  <h2 class="text-center text-primary">Main Page</h2>
+  <app-point-table></app-point-table>
+  <app-point-form></app-point-form>
 </div>
+
+<ng-template #loggedOut>
+  <h1 class="text-info text-center ">Please login.</h1>
+</ng-template>
