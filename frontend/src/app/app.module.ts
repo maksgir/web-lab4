@@ -10,7 +10,7 @@ import {AppComponent} from './app.component';
 import {LoginComponent} from './component/login/login.component';
 import {RegistrationComponent} from './component/registration/registration.component';
 import {HomePageComponent} from './component/home-page/home-page.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule } from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {httpInterceptorProviders} from "./auth/token-injector";
 import { MainComponent } from './component/main/main.component';
@@ -51,7 +51,8 @@ import { PointFormComponent } from './component/point-form/point-form.component'
     MatSlideToggleModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    ReactiveFormsModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
