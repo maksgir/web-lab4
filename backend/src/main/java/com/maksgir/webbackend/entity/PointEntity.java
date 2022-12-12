@@ -49,6 +49,12 @@ public class PointEntity {
 
     }
 
+    public PointEntity(double x, double y, double r) {
+        this.x = x;
+        this.y = y;
+        this.r = r;
+    }
+
     @Override
     public String toString() {
         return "PointEntity{" +

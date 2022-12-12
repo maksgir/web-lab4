@@ -16,4 +16,5 @@ public class PointDTO {
     private double y;
     private double r;
     private LocalDateTime dt;
+    private boolean hit;
 }

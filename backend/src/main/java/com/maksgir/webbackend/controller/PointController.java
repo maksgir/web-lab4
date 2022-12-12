@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Slf4j
 @RestController
 @CrossOrigin
@@ -26,6 +28,11 @@ public class PointController {
     @GetMapping("/clear")
     public void clearPoints(@AuthenticationPrincipal SimpleUser user) {
         userService.clearPoints(user.getUsername());
+    }
+
+    @GetMapping()
+    public List<PointDTO> getPoints(@AuthenticationPrincipal SimpleUser user) {
+        return pointService.getPointsByUsername(user.getUsername());
     }
 
     @PostMapping("/save")

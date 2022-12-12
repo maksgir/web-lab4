@@ -40,13 +40,10 @@ public class PointServiceImpl implements PointService {
 
         UserEntity user = userService.findUserBuUsername(username);
 
-        PointEntity pointEntity = new PointEntity(
-                pointDTO.getX(),
-                pointDTO.getY(),
-                pointDTO.getR(),
-                LocalDateTime.now(),
-                hit,
-                user);
+        PointEntity pointEntity = converter.dtoToEntity(pointDTO);
+        pointEntity.setHit(hit);
+        pointEntity.setDt(LocalDateTime.now());
+        pointEntity.setOwner(user);
 
         PointEntity returnedEntity = repository.save(pointEntity);
 
@@ -61,7 +58,11 @@ public class PointServiceImpl implements PointService {
 
         List<PointDTO> pointDTOList = new ArrayList<>();
 
-        return null;
+        for (PointEntity en : pointEntityList) {
+            pointDTOList.add(converter.entityToDto(en));
+        }
+
+        return pointDTOList;
     }
 
 }
