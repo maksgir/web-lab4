@@ -24,13 +24,13 @@ public class PointController {
     private UserServiceImpl userService;
 
     @GetMapping("/clear")
-    public void clearPoints(@AuthenticationPrincipal SimpleUser user){
+    public void clearPoints(@AuthenticationPrincipal SimpleUser user) {
         userService.clearPoints(user.getUsername());
     }
 
     @PostMapping("/save")
-    public void savePoint(@RequestBody PointDTO pointDTO, @AuthenticationPrincipal SimpleUser user){
-        log.info("Save request: "+ pointDTO);
-        pointService.savePoint(pointDTO, user.getUsername());
+    public PointDTO savePoint(@RequestBody PointDTO pointDTO, @AuthenticationPrincipal SimpleUser user) {
+        log.info("Save request: " + pointDTO);
+        return pointService.savePoint(pointDTO, user.getUsername());
     }
 }

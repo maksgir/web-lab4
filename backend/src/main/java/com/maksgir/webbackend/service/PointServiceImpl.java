@@ -29,7 +29,7 @@ public class PointServiceImpl implements PointService {
 
 
     @Override
-    public void savePoint(PointDTO pointDTO, String username) {
+    public PointDTO savePoint(PointDTO pointDTO, String username) {
         boolean hit = hitChecker.checkHit(pointDTO.getX(), pointDTO.getY(), pointDTO.getR());
 
         UserEntity user = userService.findUserBuUsername(username);
@@ -42,7 +42,15 @@ public class PointServiceImpl implements PointService {
                 hit,
                 user);
 
-        repository.save(pointEntity);
+        PointEntity returnedEntity = repository.save(pointEntity);
+
+        PointDTO returnedDTO = new PointDTO();
+        returnedDTO.setX(returnedEntity.getX());
+        returnedDTO.setY(returnedEntity.getY());
+        returnedDTO.setR(returnedEntity.getR());
+        returnedDTO.setDt(returnedEntity.getDt());
+
+        return returnedDTO;
 
     }
 
