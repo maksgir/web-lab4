@@ -21,6 +21,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { PointFormComponent } from './component/point-form/point-form.component';
 import {MatToolbarModule} from "@angular/material/toolbar";
+import { FooterComponent } from './component/footer/footer.component';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import {MatToolbarModule} from "@angular/material/toolbar";
     NavbarComponent,
     PointTableComponent,
     PointFormComponent,
+    FooterComponent,
 
   ],
   imports: [
