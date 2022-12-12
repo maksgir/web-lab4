@@ -20,6 +20,7 @@ import { PointTableComponent } from './component/point-table/point-table.compone
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { PointFormComponent } from './component/point-form/point-form.component';
+import {MatToolbarModule} from "@angular/material/toolbar";
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { PointFormComponent } from './component/point-form/point-form.component'
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatToolbarModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
