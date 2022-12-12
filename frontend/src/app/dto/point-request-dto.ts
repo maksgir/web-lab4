@@ -1,4 +1,4 @@
-export class PointDto {
+export class PointRequestDto {
   x: number;
   y: number;
   r: number;
@@ -9,4 +9,5 @@ export class PointDto {
     this.y = y;
     this.r = r;
   }
+
 }

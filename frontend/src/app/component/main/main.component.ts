@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {UserService} from "../../service/user.service";
 import {TokenStorageService} from "../../auth/token-storage.service";
 
 @Component({
@@ -12,8 +11,7 @@ export class MainComponent implements OnInit {
   errorMessage: string | undefined;
   info: any;
 
-  constructor(private userService: UserService,
-              private token: TokenStorageService)  { }
+  constructor(private token: TokenStorageService)  { }
 
   ngOnInit() {
     this.info = {

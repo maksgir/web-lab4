@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {PointService} from "../../service/point.service";
 import {FormBuilder} from "@angular/forms";
 import {LoginInfo} from "../../dto/login-info";
-import {PointDto} from "../../dto/point-dto";
+import {PointRequestDto} from "../../dto/point-request-dto";
 
 @Component({
   selector: 'app-point-form',
@@ -40,7 +40,7 @@ export class PointFormComponent {
 
       console.log('Form data: ', this.pointForm.value);
 
-      let point = new PointDto(
+      let point = new PointRequestDto(
         +this.pointForm.value.x_value,
         +this.pointForm.value.y_value,
         +this.pointForm.value.r_value,
@@ -48,7 +48,7 @@ export class PointFormComponent {
 
       this.pointService.savePoint(point).subscribe(
         data => {
-          console.log("aaaaaaaaa");
+          console.log("New point " + data);
         },
         error => {
           console.log(error);
