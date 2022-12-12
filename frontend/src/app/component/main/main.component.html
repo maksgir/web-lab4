@@ -1,7 +1,10 @@
 <div *ngIf="info.token; else loggedOut">
   <h2 class="text-center text-primary">Main Page</h2>
-  <app-point-table></app-point-table>
-  <app-point-form></app-point-form>
+  <div class="row">
+    <app-point-form class="col-sm-6"></app-point-form>
+  </div>
+  <app-point-table class="col-sm-6"></app-point-table>
+
 </div>
 
 <ng-template #loggedOut>
