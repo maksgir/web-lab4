@@ -16,6 +16,9 @@ export class PointFormComponent {
   });
 
   x_values: number[] = [-4, -3, -2, -1, 0, 1, 2, 3, 4];
+  y_values: number[] = [-3, -2, -1, 0, 1, 2, 3];
+  r_values: number[] = [1, 1.5, 2, 2.5, 3];
+
 
   constructor(private pointService: PointService,
               private formBuilder: FormBuilder) {
