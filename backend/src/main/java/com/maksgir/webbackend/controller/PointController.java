@@ -32,6 +32,7 @@ public class PointController {
 
     @GetMapping()
     public List<PointDTO> getPoints(@AuthenticationPrincipal SimpleUser user) {
+        log.info("Get request");
         return pointService.getPointsByUsername(user.getUsername());
     }
 

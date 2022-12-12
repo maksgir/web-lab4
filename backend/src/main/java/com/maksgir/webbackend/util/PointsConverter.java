@@ -4,8 +4,6 @@ import com.maksgir.webbackend.dto.PointDTO;
 import com.maksgir.webbackend.entity.PointEntity;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
-
 @Component
 public class PointsConverter {
 
