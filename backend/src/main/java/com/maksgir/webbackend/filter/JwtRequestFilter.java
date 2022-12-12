@@ -27,11 +27,13 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException, UsernameNotFoundException {
-
+        System.out.println("aleeeeeeee");
         final String requestTokenHeader = request.getHeader("Authorization");
 
         String username = null;
         String jwtToken = null;
+
+        System.out.println(requestTokenHeader);
 
         // JWT Token is in the form "Bearer token". Remove Bearer word and get only the Token
 

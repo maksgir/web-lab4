@@ -1,6 +1,8 @@
 import {Component} from '@angular/core';
 import {PointService} from "../../service/point.service";
 import {FormBuilder} from "@angular/forms";
+import {LoginInfo} from "../../dto/login-info";
+import {PointDto} from "../../dto/point-dto";
 
 @Component({
   selector: 'app-point-form',
@@ -15,18 +17,47 @@ export class PointFormComponent {
     r_value: ''
   });
 
+  errorMessage: string = "";
+
   x_values: number[] = [-4, -3, -2, -1, 0, 1, 2, 3, 4];
   y_values: number[] = [-3, -2, -1, 0, 1, 2, 3];
   r_values: number[] = [1, 1.5, 2, 2.5, 3];
-
 
   constructor(private pointService: PointService,
               private formBuilder: FormBuilder) {
   }
 
   onSubmit(): void {
-    // Process checkout data here
-    console.log('from form: ', this.pointForm.value);
+    this.errorMessage = "";
+
+    if (this.pointForm.value.x_value === '' || this.pointForm.value.x_value == null) {
+      this.errorMessage = "X value is required";
+    } else if (this.pointForm.value.y_value === '' || this.pointForm.value.y_value == null) {
+      this.errorMessage = "Y value is required";
+    } else if (this.pointForm.value.r_value === '' || this.pointForm.value.r_value == null) {
+      this.errorMessage = "R value is required";
+    } else {
+
+      console.log('Form data: ', this.pointForm.value);
+
+      let point = new PointDto(
+        +this.pointForm.value.x_value,
+        +this.pointForm.value.y_value,
+        +this.pointForm.value.r_value,
+      );
+
+      this.pointService.savePoint(point).subscribe(
+        data => {
+          console.log("aaaaaaaaa");
+        },
+        error => {
+          console.log(error);
+        }
+      );
+
+
+    }
+
   }
 
 }

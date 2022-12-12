@@ -1,44 +1,52 @@
 <div class="card text-white bg-dark mb-3">
   <div class="card-header">New point</div>
+  <div class="card-body" style="background-color: #29436c ">
+    <form [formGroup]="pointForm" (ngSubmit)="onSubmit()">
 
-  <form [formGroup]="pointForm" (ngSubmit)="onSubmit()">
+      <div class="form-group ">
+        <label for="x_value">
+          <select id="x_value" formControlName="x_value" class="form-select form-select-sm" required >
+            <option value="" disabled selected>Choose X value</option>
+            <option *ngFor="let x of x_values" [ngValue]="x">
+              {{ x }}
+            </option>
+          </select>
+        </label>
+      </div>
+      <br>
+      <div class="form-group">
+        <label for="y_value">
+          <select id="y_value" formControlName="y_value" class="form-select form-select-sm" required >
+            <option value="" disabled selected>Choose Y value</option>
+            <option *ngFor="let y of y_values" [ngValue]="y">
+              {{ y }}
+            </option>
+          </select>
+        </label>
+      </div>
+      <br>
+      <div class="form-group">
+        <label for="r_value">
+          <select id="r_value" formControlName="r_value" class="form-select form-select-sm " required >
+            <option value="" disabled selected>Choose R value</option>
+            <option *ngFor="let r of r_values" [ngValue]="r">
+              {{ r }}
+            </option>
+          </select>
+        </label>
+      </div>
+      <br>
 
-    <div class="form-group ">
-      <label for="x_value">
-        <select id="x_value" class="form-control"  required>
-          <option value="" >Choose X value</option>
-          <option *ngFor="let x of x_values" [ngValue]="x">
-            {{ x }}
-          </option>
-        </select>
-      </label>
-    </div>
-    <br>
-    <div class="form-group">
-      <label for="y_value">
-        <select id="y_value"  class="form-control" required>
-          <option value="" >Choose Y value</option>
-          <option *ngFor="let y of y_values" [ngValue]="y">
-            {{ y }}
-          </option>
-        </select>
-      </label>
-    </div>
-    <br>
-    <div class="form-group">
-      <label for="r_value">
-        <select id="r_value"  class="form-control" required>
-          <option value="" >Choose R value</option>
-          <option *ngFor="let r of r_values" [ngValue]="r">
-            {{ r }}
-          </option>
-        </select>
-      </label>
-    </div>
-    <br>
+      <button class="btn btn-primary" type="submit">
+        Submit
+      </button>
 
-    <button class="btn btn-outline-secondary" type="submit">Submit</button>
-  </form>
+      <div *ngIf="errorMessage!=''" class="alert alert-danger" style="margin-top: 10px;">
+        {{errorMessage}}
+      </div>
+
+    </form>
+  </div>
 
 
 </div>

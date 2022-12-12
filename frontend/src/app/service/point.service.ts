@@ -1,9 +1,10 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {PointDto} from "../dto/point-dto";
+import {Observable} from "rxjs";
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
 
 @Injectable({
@@ -13,9 +14,10 @@ export class PointService {
 
   private saveUrl = 'http://localhost:8080/api/points/save';
 
-  constructor(private http: HttpClient) { }
+  savePoint(point: PointDto): Observable<string> {
+    return this.http.post<string>(this.saveUrl, point, httpOptions);
+  }
 
-  savePoint(point: PointDto): void {
-    this.http.post<PointDto>(this.saveUrl, point, httpOptions)
+  constructor(private http: HttpClient) {
   }
 }
