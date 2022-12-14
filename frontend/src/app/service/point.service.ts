@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {PointRequestDto} from "../dto/point-request-dto";
 import {Observable} from "rxjs";
-import {PointResponseDto} from "../dto/point-response-dto";
+import {PointResponse} from "../dto/point-response";
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -13,24 +13,24 @@ const httpOptions = {
 })
 export class PointService {
 
-  private saveUrl = 'http://localhost:8080/api/points/save';
   private getUrl = 'http://localhost:8080/api/points';
+  private saveUrl = 'http://localhost:8080/api/points/save';
+  private clearUrl = 'http://localhost:8080/api/points/clear';
 
-  private pointList: PointResponseDto[] = [];
 
 
-  savePoint(point: PointRequestDto): Observable<PointResponseDto> {
-    return this.http.post<PointResponseDto>(this.saveUrl, point, httpOptions);
+  savePoint(point: PointRequestDto): Observable<PointResponse> {
+    return this.http.post<PointResponse>(this.saveUrl, point, httpOptions);
   }
 
-  getPoints():PointResponseDto[]{
-    this.http.get<PointResponseDto[]>(this.getUrl).subscribe(data => {
-        this.pointList = data;
-      },
-      error => {
-        console.log(error);
-      });
-    return this.pointList;
+  getPoints():Observable<PointResponse[]>{
+    return this.http.get<PointResponse[]>(this.getUrl);
+  }
+
+  clearPoints():void{
+    this.http.get(this.clearUrl).subscribe(data=>{
+      console.log(data);
+    });
   }
 
   constructor(private http: HttpClient) {

@@ -27,6 +27,7 @@ public class PointController {
 
     @GetMapping("/clear")
     public void clearPoints(@AuthenticationPrincipal SimpleUser user) {
+        log.info("Clear request");
         userService.clearPoints(user.getUsername());
     }
 
