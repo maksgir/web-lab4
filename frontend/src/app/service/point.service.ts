@@ -18,17 +18,16 @@ export class PointService {
   private clearUrl = 'http://localhost:8080/api/points/clear';
 
 
-
   savePoint(point: PointRequestDto): Observable<PointResponse> {
     return this.http.post<PointResponse>(this.saveUrl, point, httpOptions);
   }
 
-  getPoints():Observable<PointResponse[]>{
+  getPoints(): Observable<PointResponse[]> {
     return this.http.get<PointResponse[]>(this.getUrl);
   }
 
-  clearPoints():void{
-    this.http.get(this.clearUrl).subscribe(data=>{
+  clearPoints(): void {
+    this.http.get(this.clearUrl).subscribe(data => {
       console.log(data);
     });
   }

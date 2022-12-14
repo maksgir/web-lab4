@@ -1,7 +1,7 @@
 <div *ngIf="info.token; else loggedOut">
   <div class="row">
-    <app-point-form class="col-sm-6"></app-point-form>
-    <app-point-table class="col-sm-6"></app-point-table>
+    <app-point-form class="col-sm-6" (addEvent)="tableComponent.addPoint($event)"></app-point-form>
+    <app-point-table class="col-sm-6" #tableComponent></app-point-table>
   </div>
 
 

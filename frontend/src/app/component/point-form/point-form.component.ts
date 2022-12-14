@@ -1,8 +1,8 @@
-import {Component} from '@angular/core';
+import {Component, EventEmitter, Output, ViewChild} from '@angular/core';
 import {PointService} from "../../service/point.service";
 import {FormBuilder} from "@angular/forms";
-import {LoginInfo} from "../../dto/login-info";
 import {PointRequestDto} from "../../dto/point-request-dto";
+import {PointResponse} from "../../dto/point-response";
 
 @Component({
   selector: 'app-point-form',
@@ -17,7 +17,10 @@ export class PointFormComponent {
     r_value: ''
   });
 
+
+  @Output() addEvent = new EventEmitter<PointResponse>();
   errorMessage: string = "";
+
 
   x_values: number[] = [-4, -3, -2, -1, 0, 1, 2, 3, 4];
   y_values: number[] = [-3, -2, -1, 0, 1, 2, 3];
@@ -46,10 +49,15 @@ export class PointFormComponent {
         +this.pointForm.value.r_value,
       );
 
+
       this.pointService.savePoint(point).subscribe(
         data => {
-          console.log("New point " + data);
+          console.log("New point " + data.dt);
+          this.pointService.savePoint(data);
+          this.addEvent.emit(data);
+          this.pointForm.reset();
         },
+
         error => {
           console.log(error);
         }

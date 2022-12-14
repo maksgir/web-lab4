@@ -16,12 +16,12 @@ import {httpInterceptorProviders} from "./auth/token-injector";
 import { MainComponent } from './component/main/main.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './component/navbar/navbar.component';
-import { PointTableComponent } from './component/point-table/point-table.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { PointFormComponent } from './component/point-form/point-form.component';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import { FooterComponent } from './component/footer/footer.component';
+import { PointTableComponent } from './component/point-table/point-table.component';
 
 
 @NgModule({
@@ -32,9 +32,9 @@ import { FooterComponent } from './component/footer/footer.component';
     HomePageComponent,
     MainComponent,
     NavbarComponent,
-    PointTableComponent,
     PointFormComponent,
     FooterComponent,
+    PointTableComponent,
 
   ],
   imports: [
