@@ -77,6 +77,7 @@ export class PointGraphComponent implements OnInit {
 
   refresh(r: number) {
     this.r = r;
+    this.errorMessage = ''
     console.log("Graph: " + r);
     this.clearBoard();
     this.drawFigures(r);

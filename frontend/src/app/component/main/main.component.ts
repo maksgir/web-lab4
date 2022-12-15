@@ -20,8 +20,5 @@ export class MainComponent implements OnInit {
       username: this.token.getUsername()
     };
 
-    this.pointService.getPoints().subscribe(data=>{
-
-    })
   }
 }
