@@ -22,6 +22,7 @@ import { PointFormComponent } from './component/point-form/point-form.component'
 import {MatToolbarModule} from "@angular/material/toolbar";
 import { FooterComponent } from './component/footer/footer.component';
 import { PointTableComponent } from './component/point-table/point-table.component';
+import { PointGraphComponent } from './component/point-graph/point-graph.component';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { PointTableComponent } from './component/point-table/point-table.compone
     PointFormComponent,
     FooterComponent,
     PointTableComponent,
+    PointGraphComponent,
 
   ],
   imports: [

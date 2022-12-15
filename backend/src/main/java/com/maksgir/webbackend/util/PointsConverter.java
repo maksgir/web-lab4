@@ -9,7 +9,7 @@ import java.time.format.DateTimeFormatter;
 @Component
 public class PointsConverter {
 
-    private final DateTimeFormatter customFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    private final DateTimeFormatter customFormat = DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy");
 
     public PointDTO entityToDto(PointEntity entity){
 

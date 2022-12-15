@@ -10,8 +10,6 @@ import {PointService} from "../../service/point.service";
 })
 export class MainComponent implements OnInit {
   info: any;
-  // @ts-ignore
-  points: Array<PointResponse>;
 
   constructor(private token: TokenStorageService,
               private pointService: PointService)  { }
@@ -22,7 +20,6 @@ export class MainComponent implements OnInit {
       username: this.token.getUsername()
     };
 
-    this.points = new Array<PointResponse>()
     this.pointService.getPoints().subscribe(data=>{
 
     })

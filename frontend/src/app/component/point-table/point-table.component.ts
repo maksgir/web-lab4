@@ -14,7 +14,7 @@ import {BehaviorSubject} from "rxjs";
 
 export class PointTableComponent implements OnInit {
   @ViewChild(MatTable) table!: MatTable<PointResponse>;
-
+  @ViewChild(MatPaginator) paginator! : MatPaginator;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['x', 'y', 'r', 'dt', 'hit'];

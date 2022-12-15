@@ -1,7 +1,11 @@
 <div *ngIf="info.token; else loggedOut">
   <div class="row">
-    <app-point-form class="col-sm-6" (addEvent)="tableComponent.addPoint($event)"></app-point-form>
+    <div class="col">
+      <app-point-graph class="col-sm-6" (addEvent)="tableComponent.addPoint($event)" #graphComponent></app-point-graph>
+      <app-point-form class="col-sm-6" (addEvent)="tableComponent.addPoint($event);graphComponent.addPoint($event)" (rChangeEvent)="graphComponent.refresh($event)"></app-point-form>
+    </div>
     <app-point-table class="col-sm-6" #tableComponent></app-point-table>
+
   </div>
 
 

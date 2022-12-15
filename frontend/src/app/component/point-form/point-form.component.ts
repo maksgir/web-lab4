@@ -19,6 +19,7 @@ export class PointFormComponent {
 
 
   @Output() addEvent = new EventEmitter<PointResponse>();
+  @Output() rChangeEvent = new EventEmitter<number>()
   errorMessage: string = "";
 
 
@@ -53,9 +54,7 @@ export class PointFormComponent {
       this.pointService.savePoint(point).subscribe(
         data => {
           console.log("New point " + data.dt);
-          this.pointService.savePoint(data);
           this.addEvent.emit(data);
-          this.pointForm.reset();
         },
 
         error => {
@@ -64,6 +63,14 @@ export class PointFormComponent {
       );
 
 
+    }
+
+  }
+
+  onChangeR(e: any):void{
+    if (e.target.value != ""){
+      console.log();
+      this.rChangeEvent.emit(e.target.value.split(": ")[1]);
     }
 
   }
